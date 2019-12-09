@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.pd1{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.container{
+  width: 70%;
+  position: center;
+}
+h1{
+  position: center;
+}
