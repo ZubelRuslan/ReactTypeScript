@@ -44,7 +44,7 @@ const  usersArr: IUser[] = [
     }
 ];
 
-export class UserTable extends React.Component<any,any> {
+export class UserTable extends React.Component<any,any> { // TODO add interfaces for component props and state
 
     constructor(props:any) {
         super(props);
@@ -54,8 +54,9 @@ export class UserTable extends React.Component<any,any> {
         }
     }
 
-    handleClick=(e: any)=> {
+    handleClick = (user: IUser) => (e: any) => {
         e.preventDefault();
+    // Here you have access to user entity for clicked row
         usersArr.forEach((item: IUser) => {
             if (item.login === e.target.parentNode.id) {
                 this.setState({
@@ -67,17 +68,6 @@ export class UserTable extends React.Component<any,any> {
 
         console.log(e.target.parentNode.id);
     }
-
-    array = usersArr.map((item: IUser, index: number) => {
-        return (
-            <tr onClick={this.handleClick} key={index} id={item.login}>
-                <td>{item.login}</td>
-                <td>{item._id}</td>
-                <td>{item.password}</td>
-            </tr>
-        )
-
-    })
 
     render() {
         return (
@@ -91,7 +81,13 @@ export class UserTable extends React.Component<any,any> {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.array}
+                    {usersArr.map((item: IUser, index: number) => 
+                                  <tr onClick={this.handleClick(item)} key={index} id={item.login}>
+                                    <td>{item.login}</td>
+                                    <td>{item._id}</td>
+                                    <td>{item.password}</td>
+                                  </tr>
+                               })}
 
                     </tbody>
                 </table>
